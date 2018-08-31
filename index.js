@@ -574,7 +574,7 @@ var ModalBox = createReactClass({
     ) {
       if (!force && this.props.onRequestClose)
         return Promise.resolve(this.props.onRequestClose())
-          .then(this.close)
+          .then(bool => (bool ? this.close(true) : this.animateOpen()))
           .catch(this.animateOpen);
       this.animateClose();
       if (this.props.backButtonClose && Platform.OS === "android")
